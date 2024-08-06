@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34607.79
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base64Stream", "Base64Stream\Base64Stream.csproj", "{E52B2791-EDB7-4E7E-AA2B-102BE04F186A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webrox.Base64Stream", "Webrox.Base64Stream\Webrox.Base64Stream.csproj", "{E52B2791-EDB7-4E7E-AA2B-102BE04F186A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBase64Stream", "TestBase64Stream\TestBase64Stream.csproj", "{084F1318-32CC-4372-8C55-3AF8D187B763}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webrox.TestBase64Stream", "TestBase64Stream\Webrox.TestBase64Stream.csproj", "{084F1318-32CC-4372-8C55-3AF8D187B763}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

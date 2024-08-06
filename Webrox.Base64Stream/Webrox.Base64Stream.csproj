@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+	<PropertyGroup Condition="!$(ProjectName.Contains('Tests'))">
+		<VersionPrefix>1.0.0</VersionPrefix>
+		<Copyright>(c) $([System.DateTime]::Now.Year), Stephane Graziano (poppyto). All rights reserved.</Copyright>
+		<Description>Implement a more readable way to Encode and Decode Stream in Base64, based on Microsoft System.Security.Cryptography.CryptoStream</Description>
+		<Authors>Stephane Graziano (Poppyto)</Authors>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<PackageProjectUrl>https://github.com/Poppyto/Webrox.Base64Stream</PackageProjectUrl>
+		<PackageIcon>icon.png</PackageIcon>
+		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+		<PackageReadmeFile>Readme.md</PackageReadmeFile>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/Poppyto/Webrox.Base64Stream</RepositoryUrl>
+		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+		<RootNamespace>$(ProjectName)</RootNamespace>
+		<LangVersion>11.0</LangVersion>
+		<Nullable>enable</Nullable>
+		<NoWarn>$(NoWarn);CA1303;MSB3884;</NoWarn>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+		<PackageTags>Base64;Stream;Base64Stream;Encoder;Decoder,CryptoStream</PackageTags>
+		<IncludeSymbols>True</IncludeSymbols>
+	</PropertyGroup>
+
+</Project>

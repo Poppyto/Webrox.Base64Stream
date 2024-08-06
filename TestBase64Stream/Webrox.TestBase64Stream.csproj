@@ -4,17 +4,19 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
-  <!--<ItemGroup>
-    <None Remove="lorem-ipsum.pdf" />
-  </ItemGroup>-->
+  <ItemGroup>
+    <None Remove="1_5MB.pdf" />
+    <None Remove="dataText.txt" />
+  </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="lorem-ipsum.pdf" />
+    <EmbeddedResource Include="Assets\1_5MB.pdf" />
+    <EmbeddedResource Include="Assets\dataText.txt" />
+    <EmbeddedResource Include="Assets\lorem-ipsum.pdf" />
   </ItemGroup>
 
 
@@ -28,7 +30,7 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\Base64Stream\Base64Stream.csproj" />
+    <ProjectReference Include="..\Webrox.Base64Stream\Webrox.Base64Stream.csproj" />
   </ItemGroup>
 
   <ItemGroup>

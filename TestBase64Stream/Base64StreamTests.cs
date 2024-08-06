@@ -1,28 +1,30 @@
-using Base64Stream;
 using FluentAssertions;
+using System.Linq;
 using System.Reflection;
 using System.Resources;
+using System.Security.Cryptography;
+using Webrox;
 
 namespace TestBase64Stream
 {
     public class Base64StreamTests
     {
-        public Base64StreamTests() 
-        {
-        }
-
         Stream LoadResource(string fileName)
         {
             var assembly = Assembly.GetAssembly(typeof(Base64StreamTests));
-            var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{fileName}");
+            var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.Assets.{fileName}");
             return stream;
         }
 
-        [Fact]
-        public void TestEncodingBinaryFile()
+        [InlineData("lorem-ipsum.pdf")]
+        [InlineData("1_5MB.pdf")]
+        [InlineData("dataText.txt")]        
+        [Theory]
+        public void GivenFile_EncodeDecodeBase64_OutputMatchesInput(string fileNameInline)
         {
-            // arrange
-            var streamPdf = LoadResource("lorem-ipsum.pdf");
+            // Arrange
+            var streamPdf = LoadResource(fileNameInline);
+            
             var bytesPdf = new byte[streamPdf.Length];
             streamPdf.Read(bytesPdf, 0, (int)streamPdf.Length);
             streamPdf.Position = 0;
@@ -30,14 +32,28 @@ namespace TestBase64Stream
             using var msEncoded = new MemoryStream();
             using var msDecoded = new MemoryStream();
 
-            // act
-            using var base64Stream = new Base64Stream.Base64Stream(msEncoded);
-            streamPdf.CopyTo(base64Stream);
-            base64Stream.Position = 0;
-            base64Stream.CopyTo(msDecoded);
+            // Act
+            using (var base64StreamEncode = new Base64EncoderStream(msEncoded, true))
+            {
+                streamPdf.CopyTo(base64StreamEncode);
+            }
 
-            // assert
-            var bufferDecoded = msDecoded.ToArray();
+            // if you dont want to Dispose base64EncoderStream, 
+            // don't forget to call base64StreamEncode.FlushFinalBlock(); 
+            // to write the remaining bytes after CopyTo
+
+
+            msEncoded.Position = 0;
+
+            using (var base64StreamDecode = new Base64DecoderStream(msEncoded, true))
+            {
+                base64StreamDecode.CopyTo(msDecoded);
+            }
+
+            // Assert
+            var decodedArray = msDecoded.ToArray();
+            var bufferDecoded = decodedArray;
+            bufferDecoded.Length.Should().Be(bytesPdf.Length);
             bufferDecoded.Should().Equal(bytesPdf);
         }
     }
